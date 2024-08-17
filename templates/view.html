@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flowers</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<style>
+    body {
+            background-color: rgb(232, 230, 230);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .flower-image {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .flower-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .flower-details h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .flower-details p {
+            text-align: center;
+            font-size: 18px;
+            color: #777;
+        }
+
+        .add-to-cart-btn {
+            display: inline;
+            width: 100%;
+            text-align: center;
+            background-color: rgb(2, 131, 41);
+            border-color: rgb(244, 195, 130);
+            color: #fff;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: rgb(61, 147, 87);
+        }
+</style>
+</head>
+<body>
+     <div class="container">
+        <div class="flower-details">
+            <h1>{{ data.flower_name }}</h1>
+            <div class="flower-image">
+                <img src="{{ data.flower_image.url }}" alt="{{ data.flower_name }}">
+            </div>
+            <p><strong>Price:</strong> ₹{{ data.flower_price }}/kg</p>
+            <p>{{ data.flower_description }}</p>
+            <a class="btn btn-info add-to-cart-btn" href="/addcart/{{ data.flower_id }}" style="width:350px;margin-left:180px;">Add to Cart</a>
+            <a class="btn btn-info add-to-cart-btn" href="/addcart/{{ data.flower_id }}" style="width:350px">Buy Now</a>
+        </div>
+    </div>
+
+</body>
+</html>
