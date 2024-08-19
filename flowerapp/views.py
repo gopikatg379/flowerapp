@@ -110,3 +110,16 @@ def update_user(request):
         return render(request, 'myprofile.html', {'data': user})
     else:
         return redirect('/login')
+
+
+def edit_image(request):
+    global user_obj
+    if 'user_name' in request.session:
+        user_name = request.session['user_name']
+        user_obj = UserRegister.objects.get(user_name=user_name)
+        if request.method == "POST":
+            user_obj = UserRegister.objects.get(user_name=user_name)
+            user_obj.image = request.POST.get("photo")
+            user_obj.save()
+            return redirect('/myprofile')
+    return render(request, 'editimage.html',{'data':user_obj})
