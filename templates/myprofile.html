@@ -24,7 +24,7 @@ body {
 /* Sidebar Styles */
 .sidebar {
     width: 250px;
-    background-color: #2c3e50;
+    background-color: rgb(48, 72, 2);
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
@@ -85,7 +85,7 @@ body {
 }
 
 .sidebar .menu li a:hover {
-    background-color: #34495e;
+    background-color: rgb(61, 147, 87);
 }
 
 .sidebar .menu li ul {
@@ -101,7 +101,7 @@ body {
 }
 
 .sidebar .menu li ul li a:hover {
-    background-color: #3b4c63;
+    background-color: rgb(61, 147, 87);
 }
 
 /* Content Styles */
@@ -177,7 +177,13 @@ body {
     border-radius: 4px;
     font-size: 14px;
 }
-
+.section button{
+        padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    background-color:#4CAF50;
+    color:white;
+}
     </style>
 </head>
 <body>
@@ -227,8 +233,19 @@ body {
                 <input type="email" value="{{data.email}}">
             </div>
             <div class="section">
-                <h2>Mobile Number <a href="#">Edit</a></h2>
-                <input type="tel" value="{{data.phone_number}}">
+                <h2>Mobile Number <a href="#" id="edit-btn" onclick="toggleEdit()">Edit</a></h2>
+                <input type="tel" value="{{data.phone_number}}" id="mobile-display">
+                <form method="POST" id="mobile-form" action="{% url 'editmobile' %}">
+                    {% csrf_token %}
+                    <input type="text" id="mobile-input" style="display:none;width: 50%;border: 1px solid #bdc3c7;border-radius: 4px;
+                    font-size: 14px;padding:10px;" value="{{data.phone_number}}" name="phone_number">
+                    <button id="save-btn" type="submit" style="display:none;width:50px;">SAVE</button>
+                </form>
+            </div>
+            <div class="section">
+                <h2>Address <a href="#" onclick="toggleEdit()">Edit</a></h2>
+                <input type="tel" value="{{data.address}}" placeholder="Add address">
+                <button type="submit"onclick="saveNumber()">SAVE</button>
             </div>
             <div class="section">
                 <h2>FAQs</h2>
@@ -236,5 +253,19 @@ body {
             </div>
         </div>
     </div>
+<script>
+        function toggleEdit() {
+            document.getElementById('mobile-display').style.display = 'none';
+            document.getElementById('mobile-input').style.display = 'inline-block';
+            document.getElementById('edit-btn').style.display = 'none';
+            document.getElementById('save-btn').style.display = 'inline-block';
+        }
+        document.getElementById('mobile-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        var newNumber = document.getElementById('mobile-input').value;
+        document.getElementById('mobile-display').value = newNumber;
+        this.submit();
+        });
+    </script>
 </body>
 </html>

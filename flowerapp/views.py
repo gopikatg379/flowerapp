@@ -122,4 +122,16 @@ def edit_image(request):
             user_obj.image = request.POST.get("photo")
             user_obj.save()
             return redirect('/myprofile')
-    return render(request, 'editimage.html',{'data':user_obj})
+    return render(request, 'editimage.html', {'data': user_obj})
+
+
+def edit_mobile(request):
+    if 'user_name' in request.session:
+        user_name = request.session['user_name']
+        user_obj = UserRegister.objects.get(user_name=user_name)
+        if request.method == "POST":
+            user_obj = UserRegister.objects.get(user_name=user_name)
+            user_obj.phone_number = request.POST.get('phone_number')
+            user_obj.save()
+            return redirect('/myprofile')
+    return render(request, 'myprofile.html', {'data': user_obj})

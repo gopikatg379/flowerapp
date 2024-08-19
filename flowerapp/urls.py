@@ -11,5 +11,6 @@ urlpatterns = [
     path('registeruser', views.register_user),
     path('logout', views.user_logout),
     path('myprofile', views.myprofile),
-    path('editimage', views.edit_image)
+    path('editimage', views.edit_image),
+    path('editmobile',views.edit_mobile,name="editmobile")
 ]
