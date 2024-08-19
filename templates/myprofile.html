@@ -159,7 +159,7 @@ body {
         <div class="sidebar">
             <div class="profile">
                 <img src="{{data.image.url}}"><span class="edit-icon"><a href="/editimage"> <ion-icon name="create-outline"></ion-icon></a></span>
-                <p>{{data.user_name}}</p>
+                <p>{{data.name}}</p>
             </div>
             <ul class="menu">
                 <li><a href="#">MY ORDERS</a></li>
@@ -168,7 +168,7 @@ body {
                     <ul>
                         <li><a href="/myprofile">Profile Information</a></li>
                         <li><a href="#">Manage Addresses</a></li>
-                        <li><a href="#">PAN Card Information</a></li>
+                        <li><a href="/pandetails">PAN Card Information</a></li>
                     </ul>
                 </li>
                 <li>
@@ -179,7 +179,7 @@ body {
                         <li><a href="#">Saved Cards</a></li>
                     </ul>
                 </li>
-                <li><a href="#">MY STUFF</a></li>
+                <li><a href="/logout"><ion-icon name="power-outline"></ion-icon>&nbsp;Logout</a></li>
             </ul>
         </div>
         <div class="content">

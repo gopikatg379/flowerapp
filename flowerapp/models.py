@@ -18,7 +18,6 @@ class AddCart(models.Model):
     cart_id = models.AutoField(primary_key=True)
     flower = models.ForeignKey(Flower, on_delete=models.CASCADE)
 
-    db_table = 'addcart_table'
 
 
 class BuyNow(models.Model):
@@ -28,17 +27,24 @@ class BuyNow(models.Model):
     razorpay_id = models.CharField(max_length=255)
     paid = models.BooleanField(default=False)
 
-    db_table = 'buynow_table'
 
 
 class UserRegister(models.Model):
     user_id = models.AutoField(primary_key=True)
     user_name = models.CharField(max_length=200)
-    name = models.CharField(max_length=200,default=1)
+    name = models.CharField(max_length=200, default=1)
     email = models.EmailField()
     phone_number = models.BigIntegerField()
-    address = models.CharField(max_length=255,default=1)
+    address = models.CharField(max_length=255, default=1)
     password = models.CharField(max_length=12)
     image = models.ImageField(upload_to='', default='person.jpg')
 
-    db_table = 'userregister_table'
+
+class PanUser(models.Model):
+    pan_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255)
+    pan_number = models.CharField(max_length=50)
+    pan_image = models.ImageField(upload_to='')
+
+    class Meta:
+        db_table = 'panuser_table'

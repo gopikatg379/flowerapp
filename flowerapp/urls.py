@@ -16,5 +16,6 @@ urlpatterns = [
     path('editemail', views.edit_email,name="editemail"),
     path('editname', views.edit_name, name="editname"),
     path('editaddress', views.edit_address, name="editaddress"),
-    path('deleteaccount', views.delete_account)
+    path('deleteaccount', views.delete_account),
+    path('pandetails', views.pan_details)
 ]

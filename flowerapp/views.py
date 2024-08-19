@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from flowerapp.models import Flower, AddCart, UserRegister
+from flowerapp.models import Flower, AddCart, UserRegister, PanUser
 
 
 # Create your views here.
@@ -179,3 +179,14 @@ def delete_account(request):
         user_obj = UserRegister.objects.get(user_name=user_name)
         user_obj.delete()
         return redirect('/')
+
+
+def pan_details(request):
+    if request.method == "POST":
+        pan_obj = PanUser()
+        pan_obj.name = request.POST.get('name')
+        pan_obj.pan_number = request.POST.get('pan_number')
+        pan_obj.pan_image = request.POST.get('pan_image')
+        pan_obj.save()
+        return redirect('/myprofile')
+    return render(request, 'pandetails.html')
