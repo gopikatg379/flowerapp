@@ -13,5 +13,7 @@ urlpatterns = [
     path('myprofile', views.myprofile),
     path('editimage', views.edit_image),
     path('editmobile',views.edit_mobile,name="editmobile"),
-    path('editemail', views.edit_email,name="editemail")
+    path('editemail', views.edit_email,name="editemail"),
+    path('editname', views.edit_name, name="editname"),
+    path('editaddress', views.edit_address, name="editaddress")
 ]

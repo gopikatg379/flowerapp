@@ -135,6 +135,8 @@ def edit_mobile(request):
             user_obj.save()
             return redirect('/myprofile')
     return render(request, 'myprofile.html', {'data': user_obj})
+
+
 def edit_email(request):
     if 'user_name' in request.session:
         user_name = request.session['user_name']
@@ -145,3 +147,27 @@ def edit_email(request):
             user_obj.save()
             return redirect('/myprofile')
     return render(request, 'myprofile.html', {'data': user_obj})
+
+
+def edit_name(request):
+    if 'user_name' in request.session:
+        user_name = request.session['user_name']
+        user_obj = UserRegister.objects.get(user_name=user_name)
+        if request.method == "POST":
+            user_obj = UserRegister.objects.get(user_name=user_name)
+            user_obj.name = request.POST.get('name')
+            user_obj.save()
+            return redirect('/myprofile')
+        return render(request, 'myprofile.html', {'data': user_obj})
+
+
+def edit_address(request):
+    if 'user_name' in request.session:
+        user_name = request.session['user_name']
+        user_obj = UserRegister.objects.get(user_name=user_name)
+        if request.method == "POST":
+            user_obj = UserRegister.objects.get(user_name=user_name)
+            user_obj.address = request.POST.get('address')
+            user_obj.save()
+            return redirect('/myprofile')
+        return render(request, 'myprofile.html', {'data': user_obj})
