@@ -135,3 +135,13 @@ def edit_mobile(request):
             user_obj.save()
             return redirect('/myprofile')
     return render(request, 'myprofile.html', {'data': user_obj})
+def edit_email(request):
+    if 'user_name' in request.session:
+        user_name = request.session['user_name']
+        user_obj = UserRegister.objects.get(user_name=user_name)
+        if request.method == "POST":
+            user_obj = UserRegister.objects.get(user_name=user_name)
+            user_obj.email = request.POST.get('email')
+            user_obj.save()
+            return redirect('/myprofile')
+    return render(request, 'myprofile.html', {'data': user_obj})

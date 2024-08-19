@@ -229,8 +229,14 @@ body {
                 </form>
             </div>
             <div class="section">
-                <h2>Email Address <a href="#">Edit</a></h2>
-                <input type="email" value="{{data.email}}">
+                <h2>Email Address <a href="#" id="edit-btnn" onclick="toggleeEdit()">Edit</a></h2>
+                <input type="email" value="{{data.email}}" id="email-display">
+                <form method="POST" id="email-form" action="{% url 'editemail' %}">
+                    {% csrf_token %}
+                    <input type="text" id="email-input" style="display:none;width: 50%;border: 1px solid #bdc3c7;border-radius: 4px;
+                    font-size: 14px;padding:10px;" value="{{data.email}}" name="email">
+                    <button id="save-btnn" type="submit" style="display:none;width:50px;">SAVE</button>
+                </form>
             </div>
             <div class="section">
                 <h2>Mobile Number <a href="#" id="edit-btn" onclick="toggleEdit()">Edit</a></h2>
@@ -261,9 +267,19 @@ body {
             document.getElementById('save-btn').style.display = 'inline-block';
         }
         document.getElementById('mobile-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
         var newNumber = document.getElementById('mobile-input').value;
         document.getElementById('mobile-display').value = newNumber;
+        this.submit();
+        });
+        function toggleeEdit() {
+            document.getElementById('email-display').style.display = 'none';
+            document.getElementById('email-input').style.display = 'inline-block';
+            document.getElementById('edit-btnn').style.display = 'none';
+            document.getElementById('save-btnn').style.display = 'inline-block';
+        }
+        document.getElementById('email-form').addEventListener('submit', function(event) {
+        var newNumber = document.getElementById('email-input').value;
+        document.getElementById('email-display').value = newNumber;
         this.submit();
         });
     </script>
