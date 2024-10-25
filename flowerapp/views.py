@@ -10,7 +10,8 @@ def add_flower(request):
         flower_obj.flower_name = request.POST.get('flower_name')
         flower_obj.flower_price = request.POST.get('flower_price')
         flower_obj.flower_description = request.POST.get('flower_description')
-        flower_obj.flower_image = request.POST.get('flower_image')
+        if 'flower_image' in request.FILES:
+            flower_obj.flower_image = request.FILES.get('flower_image')
         flower_obj.save()
         return redirect('/home')
     return render(request, 'add.html')
@@ -77,7 +78,8 @@ def register_user(request):
         reg_obj.email = request.POST.get('email')
         reg_obj.phone_number = request.POST.get('phone_number')
         reg_obj.password = request.POST.get('password')
-        reg_obj.image = request.POST.get('image')
+        if 'image' in request.FILES:
+            reg_obj.image = request.FILES.get('image')
         reg_obj.save()
         return redirect('/')
     return render(request, 'register.html')
@@ -119,7 +121,8 @@ def edit_image(request):
         user_obj = UserRegister.objects.get(user_name=user_name)
         if request.method == "POST":
             user_obj = UserRegister.objects.get(user_name=user_name)
-            user_obj.image = request.POST.get("photo")
+            if 'photo' in request.FILES:
+                user_obj.image = request.FILES.get('photo')
             user_obj.save()
             return redirect('/myprofile')
     return render(request, 'editimage.html', {'data': user_obj})
@@ -190,3 +193,6 @@ def pan_details(request):
         pan_obj.save()
         return redirect('/myprofile')
     return render(request, 'pandetails.html')
+
+
+
