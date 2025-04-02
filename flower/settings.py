@@ -78,15 +78,14 @@ WSGI_APPLICATION = 'flower.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'flowers',
-        'USER': 'root',
-        'PASSWORD': 'gop1999ika',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': os.getenv('MYSQLDATABASE', 'flowers'),  # Use Railway's MYSQLDATABASE
+        'USER': os.getenv('MYSQLUSER', 'root'),  # Use Railway's MYSQLUSER
+        'PASSWORD': os.getenv('MYSQLPASSWORD', 'gop1999ika'),  # Use Railway's MYSQLPASSWORD
+        'HOST': os.getenv('MYSQLHOST', 'localhost'),  # Use Railway's MYSQLHOST
+        'PORT': os.getenv('MYSQLPORT', '3306'),  # Use Railway's MYSQLPORT
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
-
     }
 }
 
