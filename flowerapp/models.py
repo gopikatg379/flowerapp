@@ -13,9 +13,20 @@ class Flower(models.Model):
     class Meta:
         db_table = 'flower_table'
 
+class UserRegister(models.Model):
+    user_id = models.AutoField(primary_key=True)
+    user_name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, default=1)
+    email = models.EmailField()
+    phone_number = models.BigIntegerField()
+    address = models.CharField(max_length=255, default=1)
+    password = models.CharField(max_length=12)
+    image = models.ImageField(upload_to='', default='person.jpg')
+
 
 class AddCart(models.Model):
     cart_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(UserRegister,on_delete=models.CASCADE,null=True)
     flower = models.ForeignKey(Flower, on_delete=models.CASCADE)
 
 
@@ -29,15 +40,7 @@ class BuyNow(models.Model):
 
 
 
-class UserRegister(models.Model):
-    user_id = models.AutoField(primary_key=True)
-    user_name = models.CharField(max_length=200)
-    name = models.CharField(max_length=200, default=1)
-    email = models.EmailField()
-    phone_number = models.BigIntegerField()
-    address = models.CharField(max_length=255, default=1)
-    password = models.CharField(max_length=12)
-    image = models.ImageField(upload_to='', default='person.jpg')
+
 
 
 class PanUser(models.Model):

@@ -32,10 +32,14 @@ def home(request):
 
 
 def add_cart(request, flower_id):
-    flower = Flower.objects.get(flower_id=flower_id)
-    cart_obj = AddCart(flower=flower)
-    cart_obj.save()
-    return redirect('/home')
+    if 'user_name' in request.session:
+        user = request.session['user_name']
+        flower = Flower.objects.get(flower_id=flower_id)
+        cart_obj = AddCart(flower=flower)
+        cart_obj.save()
+        return redirect('/home')
+    else:
+        return redirect('/login')
 
 
 def more(request, flower_id):
@@ -44,15 +48,21 @@ def more(request, flower_id):
 
 
 def view_cart(request):
-    cart_obj = AddCart.objects.all()
-    print(cart_obj)
-    return render(request, 'viewcart.html', {'data': cart_obj})
+    if 'user_name' in request.session:
+        cart_obj = AddCart.objects.all()
+        print(cart_obj)
+        return render(request, 'viewcart.html', {'data': cart_obj})
+    else:
+        return redirect('/login')
 
 
 def remove_cart(request, flower_id):
-    cart_obj = AddCart.objects.get(flower_id=flower_id)
-    cart_obj.delete()
-    return redirect('/viewcart')
+    if 'user_name' in request.session:
+        cart_obj = AddCart.objects.get(flower_id=flower_id)
+        cart_obj.delete()
+        return redirect('/viewcart')
+    else:
+        return redirect('/login')
 
 
 def login_user(request):
@@ -193,6 +203,3 @@ def pan_details(request):
         pan_obj.save()
         return redirect('/myprofile')
     return render(request, 'pandetails.html')
-
-
-
